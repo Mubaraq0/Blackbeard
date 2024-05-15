@@ -112,7 +112,7 @@ export class MessageHandler {
                     disabledCommands[index].disabledBy
                 }* in *${disabledCommands[index].time} (GMT)*. ❓ *Reason:* ${disabledCommands[index].reason}`
             )
-        if (command.config.category === 'boss' && !this.client.config.mods.includes(M.sender.jid))
+        if (command.config.category === 'idan' && !this.client.config.mods.includes(M.sender.jid))
             return void M.reply('This command can only be used by the MODS')
         const isAdmin = M.groupMetadata?.admins?.includes(this.client.correctJid(this.client.user?.id || ''))
         if (command.config.adminRequired && !isAdmin) return void M.reply('I need to be an admin to use this command')
