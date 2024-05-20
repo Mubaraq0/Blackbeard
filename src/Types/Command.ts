@@ -42,6 +42,7 @@ export type TCategory =
     | 'anime'
     | 'economy'
     | 'cards'
+    | 'coding'
     | 'pokemon'
     | 'general'
     | 'media'
