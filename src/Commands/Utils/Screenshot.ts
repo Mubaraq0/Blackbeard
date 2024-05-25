@@ -13,7 +13,7 @@ import request from '../../lib/request'
     cooldown: 5
 })
  
-    
+    export default class ModsCommand extends BaseCommand {
     public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
         if (!context) return void (await M.reply(`Provide the url, Baka!`))
         const chitoge = context.trim()
