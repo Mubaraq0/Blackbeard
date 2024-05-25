@@ -13,9 +13,9 @@ import wikiScraper, { IWiki } from "../../lib/wikiScraper";
 })
 
 export default class ModsCommand extends BaseCommand {
-public override execute = async (M: Message, { joined }: IArgs): Promise<void> => {
-    if (!joined) return void M.reply("Provide a query, Baka!");
-		const result = await wikiScraper(joined.toLowerCase().trim());
+public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
+    if (!context) return void M.reply("Provide a query, Baka!");
+		const result = await wikiScraper(context.toLowerCase().trim());
 		if ((result as { error: string }).error)
 			return void (await M.reply("Invalid wikipedia page, Baka!"));
 		const wiki = result as IWiki;
