@@ -1998,6 +1998,14 @@ cookiejar@^2.1.2:
   resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.4.tgz#ee669c1fea2cf42dc31585469d193fef0d65771b"
   integrity sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==
 
+wikipedia@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/wikipedia/-/wikipedia-1.1.6.tgz#5757e4e9f5426de05f18adfac581dab18b4cc074"
+  integrity sha512-Ff3PzinsTqTdu0Ub28eJGZVlDXaW5D3inizaZqF7lPYqD7s8iw+9zXN6B5J6kLmAHrBVk8wj8exL0u3ULTKlnw==
+  dependencies:
+    infobox-parser "^3.4.1"
+    node-fetch "^2.6.1"
+
 core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
