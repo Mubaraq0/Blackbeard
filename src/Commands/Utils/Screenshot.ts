@@ -1,7 +1,7 @@
 import { Message, Command, BaseCommand } from '../../Structures'
 import { IArgs } from '../../Types'
 import axios from 'axios'
-import { AnyMessageContent } from '@whiskeysockets/baileys'
+import { Types } from '@whiskeysockets/baileys'
 import request from '../../lib/request'
 
 @Command('screenshot', {
@@ -18,7 +18,7 @@ import request from '../../lib/request'
         if (!context) return void (await M.reply(`Provide the url, Baka!`))
         const chitoge = context.trim()
         return void M.reply( await request.buffer(`https://shot.screenshotapi.net/screenshot?&url=${chitoge}&full_page=true&fresh=true&output=image&file_type=png&wait_for_event=load`),
-        AnyMessageContent.image,
+        Types.image,
                     undefined,
                     undefined,
                     `🌟 Here you go.\n`,
