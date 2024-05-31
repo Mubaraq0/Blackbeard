@@ -7,7 +7,7 @@ import { IArgs } from '../../Types'
     description: 'Search or download a doujin from nhentai',
     cooldown: 15,
     exp: 40,
-    category: 'nsfw',
+    category: 'anime',
     aliases: ['doujin', 'doujinshi'],
     usage: 'nhentai [query]',
 })
