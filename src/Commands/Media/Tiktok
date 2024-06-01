@@ -14,9 +14,10 @@ import { IArgs } from '../../Types'
 })
 
   export default class extends BaseCommand {
-    public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
-           if (!isURL(query))
-            return context.sendText(from, "Please input a valid url!", message);
+  //  public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
+    public override execute = async ({ reply, urls }: Message): Promise<void> => {
+           if (!urls(query))
+            return (from, "Please input a valid url!", message);
         Tiktok.Downloader(query, {
             version: "v1",
         })
