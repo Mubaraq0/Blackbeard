@@ -33,25 +33,25 @@ import { isURL } from "../../libs";
                 if (res.result.type === "video") {
                     let str =
                         `* TIKTOK VIDEO *\n\n` +
-                        `• ID: ${res.result.id}\n` +
-                        `• Create Time: ${res.result.createTime}\n` +
-                        `• Description: ${res.result.description}\n\n` +
+                        `â€¢ ID: ${res.result.id}\n` +
+                        `â€¢ Create Time: ${res.result.createTime}\n` +
+                        `â€¢ Description: ${res.result.description}\n\n` +
                         `* AUTHOR *\n\n` +
-                        `• UID: ${res.result.author.uid}\n` +
-                        `• Username: ${res.result.author.username}\n` +
-                        `• Nickname: ${res.result.author.nickname}\n` +
-                        `• Bio: ${res.result.author.signature}\n` +
-                        `• Region: ${res.result.author.region}\n\n` +
+                        `â€¢ UID: ${res.result.author.uid}\n` +
+                        `â€¢ Username: ${res.result.author.username}\n` +
+                        `â€¢ Nickname: ${res.result.author.nickname}\n` +
+                        `â€¢ Bio: ${res.result.author.signature}\n` +
+                        `â€¢ Region: ${res.result.author.region}\n\n` +
                         `* STATISTICS *\n\n` +
-                        `• Play: ${res.result.statistics.playCount}\n` +
-                        `• Downloads: ${res.result.statistics.downloadCount}\n` +
-                        `• Share: ${res.result.statistics.shareCount}\n` +
-                        `• WhatsApp Share: ${res.result.statistics.whatsappShareCount}\n` +
-                        `• Comment: ${res.result.statistics.commentCount}\n` +
-                        `• Like: ${res.result.statistics.diggCount}\n` +
-                        `• Favorite: ${res.result.statistics.collectCount}\n` +
-                        `• Reupload: ${res.result.statistics.forwardCount}\n` +
-                        `• Lose Comment: ${res.result.statistics.loseCommentCount}\n`;
+                        `â€¢ Play: ${res.result.statistics.playCount}\n` +
+                        `â€¢ Downloads: ${res.result.statistics.downloadCount}\n` +
+                        `â€¢ Share: ${res.result.statistics.shareCount}\n` +
+                        `â€¢ WhatsApp Share: ${res.result.statistics.whatsappShareCount}\n` +
+                        `â€¢ Comment: ${res.result.statistics.commentCount}\n` +
+                        `â€¢ Like: ${res.result.statistics.diggCount}\n` +
+                        `â€¢ Favorite: ${res.result.statistics.collectCount}\n` +
+                        `â€¢ Reupload: ${res.result.statistics.forwardCount}\n` +
+                        `â€¢ Lose Comment: ${res.result.statistics.loseCommentCount}\n`;
                     await Chisato.sendVideo(
                         from,
                         res.result.video.playAddr[0],
@@ -70,5 +70,5 @@ import { isURL } from "../../libs";
                     message
                 );
             });
-    },
+    };
 };
