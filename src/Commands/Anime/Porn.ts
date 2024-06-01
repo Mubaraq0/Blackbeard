@@ -14,30 +14,6 @@ import { IArgs } from '../../Types'
 
  export default class extends BaseCommand {
     public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
-        args.flags.forEach((flag) => (args.context = args.context.replace(flag, '')))
-        args.flags = args.flags.filter(
-            (flag) =>
-                flag.startsWith('--type=') ||
-                flag.startsWith('--get=') ||
-                flag.startsWith('--id=') ||
-                flag.startsWith('--page=')
-        )
-        const options = this.getOptions(args.flags)
-        const nhentai = new NHentai()
-        switch (options.type) {
-            case 'search':
-                return await this.handleSearch(M, args, options, nhentai)
-            case 'get':
-                return await this.handleDownload(M, options, nhentai)
-        }
-    }
-
-    private handleSearch = async (
-        M: Message,
-        { context }: IArgs,
-        { page }: TOption,
-        nhentai: NHentai
-    ): Promise<void> => {
         if (!context) return void M.reply('Provide a query for the search')
         return await nhentai
             .search(context.trim(), { page })
