@@ -1,7 +1,8 @@
 import { BaseCommand, Command, Message } from '../../Structures';
 import axios from 'axios';
-import Tiktok from "@tobyg74/tiktok-api-dl";
-import { isURL } from "../../libs";
+import { IArgs } from '../../Types'
+//import Tiktok from "@tobyg74/tiktok-api-dl";
+//import { isURL } from "../../libs";
 
 @Command('tiktok', {
     description: 'Download tiktok videos without watermark',
@@ -15,20 +16,20 @@ import { isURL } from "../../libs";
   export default class extends BaseCommand {
     public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
            if (!isURL(query))
-            return Chisato.sendText(from, "Please input a valid url!", message);
+            return context.sendText(from, "Please input a valid url!", message);
         Tiktok.Downloader(query, {
             version: "v1",
         })
             .then(async (res) => {
                 if (res.status === "error") {
-                    Chisato.log("error", command.name, res.message);
-                    return Chisato.sendText(from, res.message, message);
+                    context.log("error", command.name, res.message);
+                    return context.sendText(from, res.message, message);
                 }
                 if (res.result.type === "image")
-                    return Chisato.sendText(
+                    return context.sendText(
                         from,
-                        `The link / URL you entered was detected by Tiktok Image / Slide. To download it, you can use ${prefix}tiktokimage`,
-                        message
+                        `The link / URL you entered was detected by Tiktok Image / Slide. To download it, you can use tiktokimage`,
+                        'message'
                     );
                 if (res.result.type === "video") {
                     let str =
@@ -52,7 +53,7 @@ import { isURL } from "../../libs";
                         `• Favorite: ${res.result.statistics.collectCount}\n` +
                         `• Reupload: ${res.result.statistics.forwardCount}\n` +
                         `• Lose Comment: ${res.result.statistics.loseCommentCount}\n`;
-                    await Chisato.sendVideo(
+                    await context.sendVideo(
                         from,
                         res.result.video.playAddr[0],
                         false,
@@ -62,8 +63,8 @@ import { isURL } from "../../libs";
                 }
             })
             .catch((e) => {
-                Chisato.log("error", command.name, e);
-                Chisato.sendText(
+                context.log("error", command.name, e);
+                context.sendText(
                     from,
                     "There is an error. Please report it to the bot creator immediately!\nMessage : " +
                         e,
