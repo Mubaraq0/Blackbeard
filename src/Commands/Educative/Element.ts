@@ -1,9 +1,9 @@
 import { BaseCommand, Command, Message } from '../../Structures';
 import axios from 'axios';
 import { IArgs } from '../../Types';
-import pTable from 'ptable';
+/*import pTable from 'ptable';
 import npt from 'node-periodic-table';
-
+*/
 @Command('element', {
     aliases: ['el'],
     description: 'Get the properties of an element ',
