@@ -18,7 +18,7 @@ import npt from "node-periodic-table";
        	if (!context)
 			return void M.reply("Give me an element name/number/symbol, Baka!");
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const chitoge: any = context.trim();
+		const chitoge = context.trim();
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const search = await pTable(chitoge);
 		console.log(search);
@@ -42,7 +42,7 @@ import npt from "node-periodic-table";
 		text += ` *Shells: ${response.shells.join(", ")}*\n`;
 		text += ` *URL: ${response.source}*\n\n`;
 		text += ` *Summary: ${response.summary}*\n`;
-      text += ` *Muba is doing what he want*`;
+                text += ` *Muba is doing what he want*`;
 		await M.reply(text);
 	};
 }
