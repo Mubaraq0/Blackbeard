@@ -1,8 +1,8 @@
 import { BaseCommand, Command, Message } from '../../Structures';
 import axios from 'axios';
 import { IArgs } from '../../Types';
-import pTable from "ptable";
-import npt from "node-periodic-table";
+import pTable from 'ptable';
+import npt from 'node-periodic-table';
 
 @Command('element', {
     aliases: ['el'],
@@ -18,7 +18,7 @@ import npt from "node-periodic-table";
        	if (!context)
 			return void M.reply("Give me an element name/number/symbol, Baka!");
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const chitoge = context.trim();
+		const chitoge: any = context.trim();
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const search = await pTable(chitoge);
 		console.log(search);
