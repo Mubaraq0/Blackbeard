@@ -1998,6 +1998,18 @@ cookiejar@^2.1.2:
   resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.4.tgz#ee669c1fea2cf42dc31585469d193fef0d65771b"
   integrity sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==
 
+node-periodic-table@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/node-periodic-table/-/node-periodic-table-0.0.6.tgz#f672409ca1de10120b0fcb54c56d242485c51e5c"
+  integrity sha512-zaswyHQTH8duh5dxI45BAwbzJjdn7EcjoOrR8+kCQEBHGfuckHPXwe31y3kAli+0pdu77nDnYnJHqeyx9+77wg==
+
+ptable@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ptable/-/ptable-0.0.3.tgz#6ab74ad797495c88f5ba03ed56c8f444b93fd0ce"
+  integrity sha1-ardK15dJXIj1ugPtVsj0RLk/0M4=
+  dependencies:
+    array-miner "0.0.1"
+
 wikipedia@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/wikipedia/-/wikipedia-1.1.6.tgz#5757e4e9f5426de05f18adfac581dab18b4cc074"
