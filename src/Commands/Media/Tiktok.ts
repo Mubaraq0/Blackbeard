@@ -1,8 +1,8 @@
 import { BaseCommand, Command, Message } from '../../Structures';
 import axios from 'axios';
 import { IArgs } from '../../Types'
-//import Tiktok from "@tobyg74/tiktok-api-dl";
-//import { isURL } from "../../libs";
+import Tiktok from "@tobyg74/tiktok-api-dl";
+import { isURL } from "../../libs";
 
 @Command('tiktok', {
     description: 'Download tiktok videos without watermark',
