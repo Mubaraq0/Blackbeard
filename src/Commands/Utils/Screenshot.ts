@@ -18,8 +18,7 @@ import request from '../../lib/request'
         if (!context) return void (await M.reply(`Provide the url, Baka!`))
         const chitoge = context.trim()
         return void M.reply( await request.buffer(`https://shot.screenshotapi.net/screenshot?&url=${chitoge}&full_page=true&fresh=true&output=image&file_type=png&wait_for_event=load`),
-                     image,
-                    'image',
+                     'image',
                     undefined,
                     undefined,
                     `🌟 Here you go.\n`,
