@@ -10,7 +10,7 @@ import { IArgs } from '../../Types'
     category: 'general'
 })
 export default class extends BaseCommand {
-    private imageUrls: string[] = [
+    private videoUrls: string[] = [
         'https://telegra.ph/file/b4343a5fc355bacecee35.jpg',
         'https://telegra.ph/file/44cbf5ce2c39f49e49e86.jpg',
         'https://telegra.ph/file/3e0a6aeb6db835cc9d178.mp4',
@@ -26,8 +26,8 @@ export default class extends BaseCommand {
                 data
             })).filter((command) => command.data.config.category !== 'bot')
             M.reply('*Yoh! One Piece is the BEST anime👀*')
-            const randomImageUrl = this.imageUrls[Math.floor(Math.random() * this.imageUrls.length)]
-            const image = await this.client.utils.getBuffer(randomImageUrl)
+            const randomVideoUrl = this.videoUrls[Math.floor(Math.random() * this.videoUrls.length)]
+            const video = await this.client.utils.getBuffer(randomVideoUrl)
             let text = `✨! *@${M.sender.jid.split('@')[0]}*, 𝐈 𝐀𝐌 ${
                 this.client.config.name
             }\n\n𝐌𝐲 𝐏𝐫𝐞𝐟𝐢𝐱 𝐢𝐬 - "${this.client.config.prefix}"\n\n 1. *The usable commands are listed below*.`
@@ -47,7 +47,7 @@ export default class extends BaseCommand {
  *➪ Use ${this.client.config.prefix}help <command_name> for more info of a specific command* 
  *➪ Example: *${this.client.config.prefix}help hello*
  *➪ <> Blackbeard ©️ 2024 Command List*`
-            return void (await M.reply(video, 'mp4', undefined, undefined, text, [M.sender.jid]))
+            return void (await M.reply(video, 'video', undefined, undefined, text, [M.sender.jid]))
         } else {
             const cmd = context.trim().toLowerCase()
             const command = this.handler.commands.get(cmd) || this.handler.aliases.get(cmd)
