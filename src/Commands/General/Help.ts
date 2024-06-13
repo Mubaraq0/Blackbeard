@@ -47,7 +47,7 @@ export default class extends BaseCommand {
  *➪ Use ${this.client.config.prefix}help <command_name> for more info of a specific command* 
  *➪ Example: *${this.client.config.prefix}help hello*
  *➪ <> Blackbeard ©️ 2024 Command List*`
-            return void (await M.reply(image, 'image', undefined, undefined, text, [M.sender.jid]))
+            return void (await M.reply(video, 'video', undefined, undefined, text, [M.sender.jid]))
         } else {
             const cmd = context.trim().toLowerCase()
             const command = this.handler.commands.get(cmd) || this.handler.aliases.get(cmd)
