@@ -28,11 +28,11 @@ const options = [
 })
 
 export default class extends BaseCommand {
-    public override execute = async (M: Message, args: IArgs): Promise<void> => {
+    public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
       if (M.quoted?.sender) M.mentioned.push(M.quoted.sender)
         M.mentioned = [...new Set(M.mentioned)]
         if (!M.mentioned.length) M.mentioned.push(M.sender.jid)
-        if (cmd === 'cu') {
+        if (context === 'cu') {
             const checkList = ` *Available Checks:*\n\n- ${options
                 .map((check) => this.client.util.capitalize(check))
                 .join('\n- ')}\n  *Usage:* ${this.client.config.prefix}(check) [tag/quote user]\nExample: ${
@@ -54,12 +54,12 @@ export default class extends BaseCommand {
             'top, anyway',
             'Helpful'
         ]
-        const percentage = this.client.util.getRandomInt(0, 101)
-        return void (await M.replyRaw({
-            text: ` _*${cmd.toUpperCase()}*_ \n\n @${M.mentioned[0].split('@')[0]} \`\`\`is ${
-                cmd !== 'charactercheck'
-                    ? `${percentage}% ${cmd.split('check')[0]}`
-                    : `${percentage}% ${this.client.util.getRandomItem(types)}`
+        const percentage = this.client.getRandomInt(0, 101)
+        return void (await M.reply({
+            text: ` _*${context.toUpperCase()}*_ \n\n @${M.mentioned[0].split('@')[0]} \`\`\`is ${
+                context !== 'charactercheck'
+                    ? `${percentage}% ${context.split('check')[0]}`
+                    : `${percentage}% ${this.client.getRandomItem(types)}`
             }\`\`\``,
             mentions: [M.mentioned[0]]
         }))
