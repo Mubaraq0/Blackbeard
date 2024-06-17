@@ -20,7 +20,7 @@ const options = [
 @Command('checkuser', {
     description: 'check on user.',
     aliases: ['cu', ...options],
-    category: 'fun',
+    category: 'utils',
     usage: `checkuser @user`,
     cooldown: 2,
     exp: 30,
