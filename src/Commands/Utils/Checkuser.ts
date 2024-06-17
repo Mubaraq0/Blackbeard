@@ -29,7 +29,9 @@ const options = [
 
 export default class extends BaseCommand {
     public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
-      if (M.quoted?.sender) M.mentioned.push(M.quoted.sender)
+//      if (M.quoted?.sender) M.mentioned.push(M.quoted.sender)
+          if (M.quoted && !users.includes(M.quoted.sender.jid)) users.push(M.quoted.sender.jid)
+ //       while (users.length < 2) users.push(M.sender.jid)
         M.mentioned = [...new Set(M.mentioned)]
         if (!M.mentioned.length) M.mentioned.push(M.sender.jid)
         if (context === 'cu') {
