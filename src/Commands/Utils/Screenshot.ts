@@ -1,4 +1,3 @@
-
 import { BaseCommand, Command, Message } from '../../Structures'
 import request from '../../lib/request'
 
@@ -13,15 +12,13 @@ import request from '../../lib/request'
 export default class command extends BaseCommand {
   override execute = async (M: Message): Promise<void> => {
     const url = M.args[0]
-    if (!url) return void M.reply(`Give me the url, Baka!`)
+    if (!url) return M.reply(`Give me the url, Baka!`)
     const chitoge = url.trim()
     try {
       const screenshot = await request.buffer(`(link unavailable))
-      return void M.reply(screenshot, 'image', undefined, undefined, `_*Here is your screenshot*_\n`)
+      M.reply(screenshot, 'image', undefined, undefined, `_*Here is your screenshot*_\n`)
     } catch (reason) {
-      return void M.reply(`Something went wrong, please try again later ${reason}`)
+      M.reply(`Something went wrong, please try again later ${reason}`)
     }
   }
 }
-
-
