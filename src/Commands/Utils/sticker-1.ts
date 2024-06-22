@@ -1,33 +1,29 @@
+import { Command, Message } from '../../Structures'
 import { Sticker, createSticker } from 'wa-sticker-formatter'
-import { proto } from '@whiskeysockets/baileys'
-// import { Sticker, Categories } from 'wa-sticker-formatter'
-import { Command, Message, BaseCommand } from '../../Structures'
-import { IArgs } from '../../Types'
 
-@Command('img2sticker', {
-  description: 'Convert image to sticker',
-  category: 'utils',
-  usage: 'img2sticker [image URL or upload image]',
-  aliases: ['i2s'],
-  exp: 20,
-  cooldown: 5
-})
-export default class extends BaseCommand {
-  public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
-    const imageUrl = context || M.quoted?.content || ''
-    if (!imageUrl) return void M.reply('Provide an image URL or upload an image!')
+export default class Img2StickerCommand extends Command {
+  name = 'img2sticker'
+  description = 'Convert image to sticker'
+  category = 'utils'
+  usage = 'img2sticker [image URL or upload image]'
+  aliases = ['i2s']
+  exp = 20
+  cooldown = 5
 
-    const imageBuffer = await this.client.downloadMediaMessage(M, imageUrl)
+  async execute(message: Message, args: string[]) {
+    const imageUrl = args[0] || message.quoted?.content || ''
+    if (!imageUrl) return message.reply('Provide an image URL or upload an image!')
+
+    const imageBuffer = await message.client.downloadMediaMessage(message, imageUrl)
     const sticker = new Sticker(imageBuffer, {
-      pack: 'Your Sticker Pack',
-      author: M.sender.username,
+      pack: 'Blackbeard Stickers',
+      author: message.sender.username,
       type: StickerTypes.FULL,
       categories: [''],
       quality: 100,
       background: 'transparent'
     })
 
-    return void (await M.reply(await sticker.build(), 'sticker'))
+    return message.reply(await sticker.build(), 'sticker')
   }
 }
-
