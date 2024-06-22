@@ -17,12 +17,12 @@ export default class extends BaseCommand {
     const imageUrl = context || M.quoted?.content || ''
     if (!imageUrl) return void M.reply('Provide an image URL or upload an image!')
 
-    const imageBuffer = await this.client.downloadMediaMessage(M, imageUrl)
+    const imageBuffer = await this.client.utils(M, imageUrl)
     const sticker = new Sticker(imageBuffer, {
       pack: 'Your Sticker Pack',
       author: M.sender.username,
-      type: StickerTypes.FULL,
-      categories: [''],
+      type: FULL,
+      categories: ['--love'],
       quality: 100,
       background: 'transparent'
     })
