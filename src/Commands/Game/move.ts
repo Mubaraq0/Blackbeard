@@ -1,36 +1,51 @@
-import { BaseCommand, Command, Message } from '../../Structures'
+import { Message, Command, BaseCommand } from '../../Structures';
+import { Chess } from 'chess.js'; // Assuming you're using chess.js library
 
 @Command('move', {
-    description: 'Make a move in a chess game',
-    aliases: ['m'],
-    usage: 'move e2e4',
-    exp: 10,
-    cooldown: 15,
+    description: 'Make a move in the chess game.',
+    usage: 'move [fromTile] [toTile]',
+    cooldown: 5,
     category: 'games'
 })
 export default class extends BaseCommand {
+    private games: Map<string, Chess> = new Map(); // Stores active games by user ID
+
     public override execute = async (M: Message): Promise<void> => {
-        const game = this.handler.chess.getGame(M.from)
-        if (!game) return void M.reply(`There's no chess game ongoing in this group.`)
-
-        const move = M.content.trim().split(' ')[1]
-        if (!move) return void M.reply(`Provide a valid move in algebraic notation (e.g., e2e4).`)
-
-        const moveResult = game.move(move)
-        if (!moveResult) return void M.reply(`Invalid move. Please try again.`)
-
-        this.handler.chess.updateGame(M.from, game)
-
-        if (game.in_checkmate()) {
-            this.handler.chess.endGame(M.from)
-            return void M.reply(`Checkmate! ${moveResult.color === 'w' ? 'White' : 'Black'} wins the game.`)
+        const args = M.content.trim().split(/\s+/);
+        if (args.length !== 3) {
+            await M.reply(`Usage: ${this.client.config.prefix}move [fromTile] [toTile]`);
+            return;
         }
 
-        if (game.in_draw()) {
-            this.handler.chess.endGame(M.from)
-            return void M.reply(`The game is a draw.`)
-        }
-
-        return void M.reply(`Move accepted: ${move}. It's now ${game.turn() === 'w' ? 'White' : 'Black'}'s turn.`)
+        const from = args[1];
+        const to = args[2];
+        await this.handleMove(M, from, to);
     }
-          }
+
+    private async handleMove(M: Message, from: string, to: string): Promise<void> {
+        const userId = M.author.id;
+        let game = this.games.get(userId);
+
+        if (!game) {
+            game = new Chess(); // Start a new game if one doesn't exist
+            this.games.set(userId, game);
+        }
+
+        const moveResult = game.move({ from, to });
+
+        if (moveResult) {
+            await M.reply(`Move ${moveResult.san} was successful!`);
+
+            // Check if the game has ended
+            if (game.in_checkmate()) {
+                await M.reply('Checkmate! The game is over.');
+                this.games.delete(userId); // Remove the game from the map
+            } else if (game.in_draw() || game.in_stalemate()) {
+                await M.reply('The game is a draw or stalemate.');
+                this.games.delete(userId); // Remove the game from the map
+            }
+        } else {
+            await M.reply(`Invalid move from ${from} to ${to}. Please try again.`);
+        }
+    }
+                             }
