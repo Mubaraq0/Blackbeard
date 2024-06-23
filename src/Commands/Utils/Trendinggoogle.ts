@@ -15,7 +15,7 @@ import axios from 'axios'
   export default class extends BaseCommand {
     public override execute = async (M: Message, { context }: IArgs): Promise<void> => {
           if (!context) return void M.reply('✖ Provide an item name to search, Baka!')
-        const chitoge = joined.trim()
+        const chitoge = context.trim()
         console.log(chitoge)
         const { data } = await axios.get(`https://api-xcoders.xyz/api/info/trend/google?country=${chitoge}&apikey=Zl0clXuAbx`)
         const buffer = await request.buffer(data.result.data[0].thumbnail).catch((e) => {
